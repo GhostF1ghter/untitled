@@ -4,11 +4,17 @@ public class Step {
     int column;
     int row;
     String player;
-    static int orderOfStep = 0;
+     int orderOfStep = 0;
 
-    public Step(int i, int i1, String s) {
-        orderOfStep++;
-        System.out.println(orderOfStep);
+    public int getOrderOfStep() {
+        return orderOfStep;
+    }
+
+    public Step(int column, int row, String player) {
+    this.column = column;
+    this.row = row;
+    this.player = player;
+
     }
 
     public int getColumn() {

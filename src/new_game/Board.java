@@ -15,7 +15,7 @@ public class Board {
 
 
     public String winnerCheck() {
-        boolean isWinner = false;
+
         int winner = 0;
         for (int i = 0; i < field.length; i++) {
             int columnCounter = 0;
@@ -32,7 +32,7 @@ public class Board {
                 }
                 if ((field[j][i] == field[0][i] && field[0][i] != 0) || (rowCounter == field.length)) {
                     rowCounter++;
-                    if (columnCounter == field.length) {
+                    if (rowCounter == field.length) {
                         winner = field[j][i];
                     }
                 }
