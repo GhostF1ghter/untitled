@@ -5,6 +5,7 @@ public class Human extends Player implements Turn {
 
     public Human(String name) {
         super(name);
+
     }
 
     public boolean isPossibleStep(int column,int row){
@@ -21,10 +22,11 @@ public class Human extends Player implements Turn {
 
         try {
             if (checkerboard[column][row] == 0 && player.equalsIgnoreCase("tic")) {
-                return 1;
+
+                return getTic();
             }
             if (checkerboard[column][row] == 0 && player.equalsIgnoreCase("tac")) {
-                return 2;
+                return getTac();
             } else {
                 throw new Exception("Укажите пустое место в поле");
             }
