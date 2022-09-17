@@ -24,7 +24,7 @@ public class Game {
 //            if ((Math.random() * 10) < 5) {
                 while (board.winnerCheck().equalsIgnoreCase("nobody") && i < newGame.length * newGame.length){
                     if (board.playerCheck().equalsIgnoreCase(player1.getName())) {
-                        System.out.println("Ходит игрок " + player1.getName() + " Введите столбец: ");
+                        System.out.println("Ходит игрок " + player1.getName());
                     }
                     player1.position();
                     board.print();
