@@ -1,4 +1,4 @@
-import new_game.ListNode;
+import TasksFromLeetCode.ListNode;
 
 public  class  Solution {
     //        public Solution(){};

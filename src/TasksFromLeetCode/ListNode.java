@@ -1,4 +1,4 @@
-package new_game;
+package TasksFromLeetCode;
 
 public  class ListNode {
 

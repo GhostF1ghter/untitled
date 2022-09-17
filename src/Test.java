@@ -1,82 +1,59 @@
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.Comparator;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
 
-public class Test {
-
-//        public static void main(String[] args) {
+class Test{
+//    public static void main(String[] args) {
+//        Comparator<Person> pcomp = new PersonNameComparator().thenComparing(new PersonAgeComparator());
+//        TreeSet<Person> people = new TreeSet(pcomp);
+//        people.add(new Person("Tom", 23));
+//        people.add(new Person("Nick",34));
+//        people.add(new Person("Tom",10));
+//        people.add(new Person("Bill",14));
 //
-//            Person kate = new Person("Kate");
-//            System.out.println(kate.getName());     // Kate
-//            changePerson(kate);
-//            System.out.println(kate.getName());     // Kate - изменения не произошло
-//            // kate хранит ссылку на старый объект
+//        for(Person  p : people){
 //
-//        }
-//        static void changePerson(Person p){
-//            p = new Person("Alice");    // p указывает на новый объект
-//            p.setName("Ann");
-//            System.out.println(p.getName() + " 111");
-//        }
-//        static void changeName(Person p){
-//            p.setName("Alice");
+//            System.out.println(p.getName() + " " + p.getAge());
 //        }
 //    }
-//    class Person{
-//
-//        private String name;
-//
-//        Person(String name){
-//            this.name = name;
-//        }
-//        public void setName(String name){
-//            this.name = name;
-//        }
-//        public String getName(){
-//
-//            return this.name;
-//        }
-//    }
-
 
     public static void main(String[] args) {
-//        romanToInt("xidm<");
 
-
-
+        String input = "Hello Java! Hello JavaScript! JavaSE 8.";
+        Pattern pattern = Pattern.compile("[ ,.!?]");
+        String[] words = pattern.split(input);
+        for(String word:words)
+            System.out.println(word);
     }
 
-//    public static int romanToInt(String s) {
-//        int sum = 0;
-//
-//        for (int i = 0; i < s.length(); i++) {
-//            if (s.toUpperCase().charAt(i) == 'I') {
-//                sum += 1;
-//            }
-//            if (s.toUpperCase().charAt(i) == 'V') {
-//                sum += 5;
-//            }
-//            if (s.toUpperCase().charAt(i) == 'X') {
-//                sum += 10;
-//            }
-//            if (s.toUpperCase().charAt(i) == 'L') {
-//                sum += 50;
-//            }
-//            if (s.toUpperCase().charAt(i) == 'C') {
-//                sum += 100;
-//            }
-//            if (s.toUpperCase().charAt(i) == 'D') {
-//                sum += 500;
-//            }
-//            if (s.toUpperCase().charAt(i) == 'M') {
-//                sum += 1000;
-//            }
-//        }
-//        System.out.println(sum);
-//        return sum;
-//    }
-//public int twoSum(int[] nums,int target){
-//
-//}
+}
+class Person{
 
+    private String name;
+    private int age;
+    public Person(String n, int a){
+        name=n;
+        age=a;
+    }
+    String getName(){return name;}
+    int getAge(){return age;}
+}
+class PersonNameComparator implements Comparator<Person>{
+
+    public int compare(Person a, Person b){
+
+        return a.getName().compareTo(b.getName());
+    }
+}
+class PersonAgeComparator implements Comparator<Person>{
+
+    public int compare(Person a, Person b){
+
+        if(a.getAge()> b.getAge())
+            return 1;
+        else if(a.getAge()< b.getAge())
+            return -1;
+        else
+            return 0;
+    }
 }

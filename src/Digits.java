@@ -1,4 +1,4 @@
-import new_game.ListNode;
+import TasksFromLeetCode.ListNode;
 
 public class Digits {
     /*You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse
