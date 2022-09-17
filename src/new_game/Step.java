@@ -5,6 +5,7 @@ public class Step {
     int row;
     String player;
      int orderOfStep = 0;
+     static int counter = 1;
 
     public int getOrderOfStep() {
         return orderOfStep;
@@ -14,7 +15,7 @@ public class Step {
     this.column = column;
     this.row = row;
     this.player = player;
-
+    this.orderOfStep = counter++;
     }
 
     public int getColumn() {
