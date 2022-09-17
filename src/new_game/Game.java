@@ -34,6 +34,7 @@ public class Game {
                     System.out.println("Укажите строку: ");
                     int row = scanner.nextInt();
                     newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1);
+                    steps.add(new Step(column, row, player2.getName()));
                     board.print();
                     board.winnerCheck();
                     i++;
