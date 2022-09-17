@@ -2,19 +2,37 @@ package TestForMe;
 
 
 import java.util.Scanner;
+/*
+короче очень мало смысла в разделени клссов, и теперь с ними ничего не сделать
 
+план должен был быть такой
+есть класс Игрок у него есть поля,
+у него два наследника Человек и Бот
+
+есть класс доска у него есть поле и метод проверки победителя и печать доски
+
+есть класс ход он имеет х y, кто ходит, номер хода
+
+есть интерфейс "ходибельность" у него метод "ходить" бот имеет одну логику в имплементации, а человек другую
+
+есть класс игра в нем мейн метод, создание одной доски двух игроков в зависимости от выбора и он вызывает методы нужных классов
+
+ */
 
 
 public class TicTacToe{
-
+/*
+TODO: папки исправить, почитай как их надо строить
+ */
 
     int[][] field;
     String botGame;
-    static int randomFirstPlayer;
+    static int randomFirstPlayer;//TODO: зачем два рандомных инта, еще и снаружи метода. если можно внутри
+    //просто один раз рандом если 1 игрок если 0 то бот ходит
     static int randomSecondPlayer;
 
     public static void main(String[] args) {
-
+        //todo: что за горы интеров
 
         TicTacToe tikTak = new TicTacToe();
 
@@ -36,7 +54,7 @@ public class TicTacToe{
             randomSecondPlayer = 1;
             System.out.println("Игрок выбрасывает: " + randomFirstPlayer); // изменить на 0 1
             System.out.println("Бот выбрасывает: " + randomSecondPlayer);
-
+            //это больше будет не нужно если всего одно число, можно как булеан вообще рандомить
             if (randomFirstPlayer > randomSecondPlayer) {
                 BotVersusPlayer.playerIsGoingFirst(tikTak,scanner);
             } else {
@@ -90,12 +108,14 @@ public class TicTacToe{
 
 
 }
-
+//TODO: все классы должны быть в отдельных файлах
 class BotVersusPlayer extends TicTacToe implements Steps, PlayerAndWinnerCheck  {
-
+    //TODO: в чем смысл этого класса,его наследования и интерфейсов?
 //    private static PlayerAndWinnerCheck botVersusPlayerCheck;
 //    private static Steps botVersusPlayerStep;
+    //TODO: зачем филд тут и филд там?
         int[][] field;
+        //TODO: зачем оно статик?
      static Steps botVersusPlayerStep = new BotVersusPlayer();
      static PlayerAndWinnerCheck botVersusPlayerCheck = new BotVersusPlayer();
     public static void playerIsGoingFirst(TicTacToe tikTak, Scanner scanner) {
