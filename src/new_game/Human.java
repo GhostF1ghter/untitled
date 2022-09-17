@@ -30,7 +30,6 @@ public class Human extends Player implements Turn {
             } else {
                 throw new Exception("Укажите пустое место в поле");
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return checkerboard[column][row] ;

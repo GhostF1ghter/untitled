@@ -57,6 +57,7 @@ public class Game {
                         step.getOrderOfStep());
             }
         }
+        System.out.println("Игра окончена");
     }
 
     private static void progress(Human player, Board board, Scanner scanner, int[][] newGame, ArrayList<Step> steps) {
