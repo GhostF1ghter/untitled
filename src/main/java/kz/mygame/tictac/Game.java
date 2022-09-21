@@ -39,87 +39,16 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Играем с ботом?");
         String yesOrNo = scanner.next();
-//        ArrayList<Step> steps = new ArrayList<Step>();
-//        Board board = new Board();
-//        System.out.println("Укажите размер доски: ");
-//        int size = scanner.nextInt();
-//        board.createBoard(size);
-//
-//        System.out.println("Размер доски = " + size + "x" + size);
-//        int i = 0;
-//
-//        int[][] newGame = board.getField();
 
         if (yesOrNo.equalsIgnoreCase("Да")) {
             botToHuman(scanner);
-//            Bot player1 = new Bot("tic");
-//            Human player2 = new Human("tac");
-//                while (board.winnerCheck().equalsIgnoreCase("nobody") && i < newGame.length * newGame.length){
-//                    if (board.playerCheck().equalsIgnoreCase(player1.getName())) {
-//                        System.out.println("Ходит игрок " + player1.getName());
-//                    }
-//                    player1.position();
-//                    board.print();
-//                    board.winnerCheck();
-//                    System.out.println("Ходите вы. Укажите столбец: ");
-//                    int column = scanner.nextInt();
-//                    System.out.println("Укажите строку: ");
-//                    int row = scanner.nextInt();
-//                    newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1);
-//                    steps.add(new Step(column, row, player2.getName()));
-//                    board.print();
-//                    board.winnerCheck();
-//                    i++;
-//                }
-//            }
+
         } else {
             humanToHuman(scanner);
         }
-//            Human player = new Human("tic");
-//            Human player2 = new Human("tac");
-//            while (board.winnerCheck().equalsIgnoreCase("nobody") && i < newGame.length * newGame.length) {
-//                if (board.playerCheck().equalsIgnoreCase(player.getName())) {
-//                    System.out.println("Ходит игрок " + player.getName() + " Введите столбец: ");
-//                    progress(player, board, scanner, newGame, steps);
-//                } else {
-//                    System.out.println("Теперь Ходит игрок " + player2.getName() + " Введите столбец: ");
-//                    progress(player2, board, scanner, newGame, steps);
-//                }
-//                i++;
-//            }
-//            for (Step step : steps) {
-//                System.out.println(step.getColumn() + " " + step.getRow() + " " + step.getPlayer() + " Очередь хода " +
-//                        step.getOrderOfStep());
-//            }
-//        }
-//        System.out.println("Игра окончена");
+
     }
 
-    //    private static void progress(Human player, Board board, Scanner scanner, int[][] newGame, ArrayList<Step> steps) {
-//
-//        int column = scanner.nextInt();
-//        System.out.println("Введите строку:");
-//        int row = scanner.nextInt();
-//        if (board.isPossibleStep(column, row)) {
-//            newGame[column - 1][row - 1] = player.step(player.getName(), column - 1, row - 1);
-//            steps.add(new Step(column, row, player.getName()));
-//            board.print();
-//            board.winnerCheck();
-//        } else {
-//            for (int i = 0; ; i++) {
-//                System.out.println("Укажите заново столбец и строку: ");
-//                column = scanner.nextInt();
-//                row = scanner.nextInt();
-//                if (board.isPossibleStep(column, row)) {
-//                    newGame[column - 1][row - 1] = player.step(player.getName(), column - 1, row - 1);
-//                    steps.add(new Step(column, row, player.getName()));
-//                    board.print();
-//                    board.winnerCheck();
-//                    break;
-//                }
-//            }
-//        }
-//    }
     private static void humanToHuman(Scanner scanner) {
         Human player1 = new Human("tic");
         Human player2 = new Human("tac");
@@ -227,10 +156,6 @@ public class Game {
             int column = scanner.nextInt();
             System.out.println("Укажите строку: ");
             int row = scanner.nextInt();
-//            newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1,board);
-//            steps.add(new Step(column, row, player2.getName()));
-//            board.print();
-//            board.winnerCheck();
             if (board.isPossibleStep(column, row)) {
                 newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1,board);
                 steps.add(new Step(column, row, player2.getName()));
