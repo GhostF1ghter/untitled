@@ -1,18 +1,14 @@
-package new_game;
+package kz.mygame.tictac.new_game;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import kz.mygame.tictac.saves.Step;
 
 public class Board {
     private static int[][] field;
 
-    public Board() {
-    }
 
     public int[][] getField() {
         return field;
     }
-
 
     public String winnerCheck() {
 
@@ -20,8 +16,6 @@ public class Board {
         for (int i = 0; i < field.length; i++) {
             int columnCounter = 0;
             int rowCounter = 0;
-
-
             for (int j = 0; j < field.length; j++) {
                 if ((field[i][j] == field[i][0] && field[i][0] != 0) || (columnCounter == field.length)) {
                     columnCounter++;
@@ -38,7 +32,6 @@ public class Board {
                 }
             }
         }
-
         int mainDiagonalCounter = 0;
         int secondaryDiagonalCounter = 0;
         for (int i = 0; i < field.length; i++) {
@@ -54,8 +47,6 @@ public class Board {
                     winner = field[i][field.length - 1 - i];
             }
         }
-
-
         if (winner == 1) {
             System.out.println("Победил tic");
             return "tic";
@@ -72,8 +63,6 @@ public class Board {
     public String playerCheck() {
         int counterFirstPlayer = 0;
         int counterSecondPlayer = 0;
-
-
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 if (field[i][j] == 1) {
@@ -84,12 +73,15 @@ public class Board {
                 }
             }
         }
-
         if (counterFirstPlayer < counterSecondPlayer || counterFirstPlayer == counterSecondPlayer) {
             return "tic";
         } else {
             return "tac";
         }
+    }
+
+    public boolean isPossibleStep(int column, int row) {
+        return column >= 1 && column <= field.length && row >= 1 && row <= field.length;
     }
 
     public void createBoard(int size) {
