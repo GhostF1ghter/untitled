@@ -1,3 +1,5 @@
+package TasksFromLeetCode;
+
 import TasksFromLeetCode.ListNode;
 
 public  class  Solution {

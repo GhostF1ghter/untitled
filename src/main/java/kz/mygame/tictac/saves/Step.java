@@ -1,21 +1,21 @@
-package new_game;
+package kz.mygame.tictac.saves;
 
 public class Step {
     int column;
     int row;
     String player;
-     int orderOfStep = 0;
-     static int counter = 1;
+    int orderOfStep = 0;
+    static int counter = 1;
 
     public int getOrderOfStep() {
         return orderOfStep;
     }
 
     public Step(int column, int row, String player) {
-    this.column = column;
-    this.row = row;
-    this.player = player;
-    this.orderOfStep = counter++;
+        this.column = column;
+        this.row = row;
+        this.player = player;
+        this.orderOfStep = counter++;
     }
 
     public int getColumn() {
