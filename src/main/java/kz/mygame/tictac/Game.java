@@ -1,13 +1,16 @@
 package kz.mygame.tictac;
 
+import kz.mygame.tictac.database.Data;
 import kz.mygame.tictac.new_game.*;
 import kz.mygame.tictac.players.Bot;
 import kz.mygame.tictac.players.Human;
 import kz.mygame.tictac.players.Player;
 import kz.mygame.tictac.saves.*;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import kz.mygame.tictac.database.SaveService;
 
 /*
 1) почитай как располагать файлы по папкам. ?вроде сделал
@@ -36,9 +39,40 @@ public class Game {
 
 
     public static void main(String[] args) {
+
+        try {
+            // Пример выполнения запроса SELECT
+            ResultSet resultSet = Data.statement.executeQuery("SELECT * FROM steps");
+//
+//            // Обработка результатов
+//            while (resultSet.next()) {
+//                System.out.println("Column 1: " + resultSet.getString("column1"));
+//                // Выведите другие колонки по необходимости
+//            }
+//
+//            // Закрытие resultSet
+//            resultSet.close();
+
+            // Пример выполнения запроса INSERT
+//            String insertQuery = "INSERT INTO steps (column1, column2) VALUES ('значение1', 'значение2')";
+//            Data.statement.executeUpdate(insertQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Закрытие ресурсов
+            try {
+                if (Data.statement != null) Data.statement.close();
+                if (Data.connection != null) Data.connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Играем с ботом?");
         String yesOrNo = scanner.next();
+
 
         if (yesOrNo.equalsIgnoreCase("Да")) {
             botToHuman(scanner);
@@ -53,6 +87,7 @@ public class Game {
         Human player1 = new Human("tic");
         Human player2 = new Human("tac");
         ArrayList<Step> steps = new ArrayList<Step>();
+        SaveService saveService = new SaveService();
         Board board = new Board();
         System.out.println("Укажите размер доски: ");
         int size = scanner.nextInt();
@@ -68,7 +103,8 @@ public class Game {
                 int row = scanner.nextInt();
                 if (board.isPossibleStep(column, row)) {
                     newGame[column - 1][row - 1] = player1.step(player1.getName(), column - 1, row - 1,board);
-                    steps.add(new Step(column, row, player1.getName()));
+                    saveService.saveGame(new Step(column, row, player2.getName()));
+//                    steps.add(new Step(column, row, player1.getName()));
                     board.print();
                     if (board.winnerCheck().equalsIgnoreCase("tic") || board.winnerCheck().equalsIgnoreCase("tac")){
                         break;
@@ -80,7 +116,8 @@ public class Game {
                         row = scanner.nextInt();
                         if (board.isPossibleStep(column, row)) {
                             newGame[column - 1][row - 1] = player1.step(player1.getName(), column - 1, row - 1,board);
-                            steps.add(new Step(column, row, player1.getName()));
+                            saveService.saveGame(new Step(column, row, player2.getName()));
+//                            steps.add(new Step(column, row, player1.getName()));
                             board.print();
                             if (board.winnerCheck().equalsIgnoreCase("tic") || board.winnerCheck().equalsIgnoreCase("tac")){
                                 break;
@@ -97,7 +134,8 @@ public class Game {
                 int row = scanner.nextInt();
                 if (board.isPossibleStep(column, row)) {
                     newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1,board);
-                    steps.add(new Step(column, row, player2.getName()));
+                    saveService.saveGame(new Step(column, row, player2.getName()));
+//                    steps.add(new Step(column, row, player2.getName()));
                     board.print();
                     if (board.winnerCheck().equalsIgnoreCase("tic") || board.winnerCheck().equalsIgnoreCase("tac")){
                         break;
@@ -109,7 +147,8 @@ public class Game {
                         row = scanner.nextInt();
                         if (board.isPossibleStep(column, row)) {
                             newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1,board);
-                            steps.add(new Step(column, row, player2.getName()));
+                            saveService.saveGame(new Step(column, row, player2.getName()));
+//                            steps.add(new Step(column, row, player2.getName()));
                             board.print();
                             if (board.winnerCheck().equalsIgnoreCase("tic") || board.winnerCheck().equalsIgnoreCase("tac")){
                                 break;
@@ -122,10 +161,7 @@ public class Game {
             }
             i++;
         }
-        for (Step step : steps) {
-            System.out.println(step.getColumn() + " " + step.getRow() + " " + step.getPlayer() + " Очередь хода " +
-                    step.getOrderOfStep());
-        }
+
         System.out.println("Игра окончена");
     }
 
@@ -134,6 +170,7 @@ public class Game {
         Bot player1 = new Bot("tic");
         Human player2 = new Human("tac");
         ArrayList<Step> steps = new ArrayList<Step>();
+        SaveService saveService = new SaveService();
         Board board = new Board();
         System.out.println("Укажите размер доски: ");
         int size = scanner.nextInt();
@@ -158,7 +195,9 @@ public class Game {
             int row = scanner.nextInt();
             if (board.isPossibleStep(column, row)) {
                 newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1,board);
-                steps.add(new Step(column, row, player2.getName()));
+                saveService.saveGame(new Step(column, row, player2.getName()));
+//               steps.add(new Step(column, row, player2.getName()));
+
                 board.print();
                 if (board.winnerCheck().equalsIgnoreCase("tic") || board.winnerCheck().equalsIgnoreCase("tac")){
                     break;
@@ -170,7 +209,8 @@ public class Game {
                     row = scanner.nextInt();
                     if (board.isPossibleStep(column, row)) {
                         newGame[column - 1][row - 1] = player2.step(player2.getName(), column - 1, row - 1,board);
-                        steps.add(new Step(column, row, player2.getName()));
+                        saveService.saveGame(new Step(column, row, player2.getName()));
+//                        steps.add(new Step(column, row, player2.getName()));
                         board.print();
                         board.winnerCheck();
                         break;
@@ -179,10 +219,7 @@ public class Game {
             }
             i++;
         }
-        for (Step step : steps) {
-            System.out.println(step.getColumn() + " " + step.getRow() + " " + step.getPlayer() + " Очередь хода " +
-                    step.getOrderOfStep());
-        }
+
         System.out.println("Игра окончена");
     }
 

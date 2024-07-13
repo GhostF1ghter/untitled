@@ -8,7 +8,8 @@ public class Human extends Player implements Turn {
 
     }
 
-    public int step(String player, int column, int row,Board board) {
+    @Override
+    public int step(String player, int column, int row, Board board) {
         player = super.getName();
         int[][] checkerboard = board.getField();
         try {

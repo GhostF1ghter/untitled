@@ -11,6 +11,16 @@ public class Step {
         return orderOfStep;
     }
 
+    @Override
+    public String toString() {
+        return "Step{" +
+                "Стобец= " + column +
+                ", Строка= " + row +
+                ", Игрок= '" + player + '\'' +
+                ", Очередь хода=" + orderOfStep +
+                '}';
+    }
+
     public Step(int column, int row, String player) {
         this.column = column;
         this.row = row;
@@ -18,16 +28,17 @@ public class Step {
         this.orderOfStep = counter++;
     }
 
-    public int getColumn() {
-        return column;
+    public String getColumn() {
+
+        return Integer.toString(column+1);
     }
 
     public void setColumn(int column) {
         this.column = column;
     }
 
-    public int getRow() {
-        return row;
+    public String getRow() {
+        return Integer.toString(row + 1);
     }
 
     public void setRow(int row) {
